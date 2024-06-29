@@ -2,7 +2,7 @@
 function handleCredentialResponse(response){
     user_credential = response.credential;
     console.log(user_credential);
-    fetch("http://localhost:3000/auth", 
+    fetch("http://localhost:3000/auth/verify", 
         {
             method: "GET",
             headers: {
@@ -11,7 +11,19 @@ function handleCredentialResponse(response){
         }
     )
     .then(
-        console.log("Success!")
+        res => {
+            if(!res.ok){
+                throw new Error(`HTTP Error! status: ${res.status}`);
+            }
+            console.log("Success!");
+            return res.json();
+        }
+    )
+    .then(
+        data => {
+            localStorage.setItem("user", JSON.stringify(data));
+            window.location.href = "profile.html";
+        }
     ).catch(
         error => console.log(`Credential Handler Error: ${error}`)
     )
@@ -19,6 +31,7 @@ function handleCredentialResponse(response){
 
 // load client id from an env file
 // ISSUE: SIGN IN BUTTON LOADS BEFORE CLIENTID IS LOADED, NEED TO LOAD CLIENT ID FIRST
+/*
 async function getClientId(){
     await fetch("http://localhost:3000/config")
         .then(
@@ -32,4 +45,5 @@ async function getClientId(){
         );
 }
 
-// document.addEventListener("DOMContentLoaded", getClientId);
+document.addEventListener("DOMContentLoaded", getClientId);
+*/

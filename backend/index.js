@@ -1,32 +1,35 @@
+// load required modules
 const express = require('express');
-const dotenv = require('dotenv');
 const cors = require('cors');
-const { OAuth2Client } = require('google-auth-library');
 
+const dotenv = require('dotenv');
+
+const auth = require('./auth');
+const session = require('express-session');
+// config
 dotenv.config();
-
-async function authHandler(req, res) {
-    const token = req.headers.authorization.split(' ')[1];
-    console.log(token);
-
-    const ticket = await client.verifyIdToken({
-        idToken: token,
-        audience: process.env.CLIENT_ID
-    });
-
-    const payload = ticket.getPayload();
-
-    // create session & return info
-    console.log(payload)
-    res.status(200);
-}
-
 const app = express();
 const port = 3000;
-const client = new OAuth2Client();
+const store = session.MemoryStore();
 
 app.use(cors());
 app.use(express.json());
+app.use(
+    session({
+        secret: 'hopekcc',
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24, // 1 day
+            secure: true,
+            sameSite: 'none'
+        },
+        resave: false,
+        saveUninitialized: false,
+        store
+    })
+);
+
+// routes
+app.use('/auth', auth);     // import auth routes from auth.js
 
 app.get("/", (req, res) => {
     res.send("HopeKCC Auth Test API");
@@ -35,8 +38,6 @@ app.get("/", (req, res) => {
 app.get("/config", (req, res) => {
     res.status(200).json({clientid: process.env.CLIENT_ID});
 });
-
-app.get("/auth", authHandler);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
