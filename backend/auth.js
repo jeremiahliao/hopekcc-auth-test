@@ -6,7 +6,6 @@ const { OAuth2Client } = require('google-auth-library');
 router.get("/verify", async (req, res) => {
     const client = new OAuth2Client();
     const token = req.headers.authorization.split(' ')[1];
-    
     if(!token){
         res.status(401).send("No ID Token provided");
         return;

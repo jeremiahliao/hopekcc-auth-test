@@ -13,7 +13,7 @@ function handleCredentialResponse(response){
     .then(
         res => {
             if(!res.ok){
-                throw new Error(`HTTP Error! status: ${res.status}`);
+                throw new Error(`Authentication Error! status: ${res.status}. Message: ${res.statusText}`);
             }
             console.log("Success!");
             return res.json();

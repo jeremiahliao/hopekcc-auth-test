@@ -9,7 +9,7 @@ const session = require('express-session');
 // config
 dotenv.config();
 const app = express();
-const port = 3000;
+const port = 8000;
 const store = session.MemoryStore();
 
 app.use(cors());
