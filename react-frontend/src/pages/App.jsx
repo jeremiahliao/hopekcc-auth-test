@@ -1,15 +1,8 @@
-import './App.css';
+import '../assets/App.css'
+import Header from '../components/header.jsx';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
-  // useGoogleOneTapLogin({
-  //   onSucecss: res => {
-  //     console.log(res);
-  //   },
-  //   onError: err => {
-  //     console.log(`Login Failed: ${err}`);
-  //   }
-  // });
 
   function handleLogin(credentialResponse){
     fetch("http://localhost:8000/auth/verify",
@@ -42,9 +35,7 @@ function App() {
   
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Authentication App Test</h1>
-      </header>
+      <Header />
       <div>
         <GoogleOAuthProvider clientId="632427256455-90f00d3r3di4emog5o9tpjehlcpeq0r0.apps.googleusercontent.com">
           <div className='signin_container'>
@@ -55,7 +46,6 @@ function App() {
                 }
               }
               useOneTap
-              theme="filled_black"
               shape="pill"
             />
           </div>
@@ -66,3 +56,5 @@ function App() {
 }
 
 export default App;
+
+

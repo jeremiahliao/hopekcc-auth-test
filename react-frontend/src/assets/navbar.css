@@ -1,0 +1,17 @@
+.navbar{
+    list-style: none;
+    padding: 0;
+    margin: 3.5vh;
+    width: 75vw;
+}
+
+.navbar-container{
+    background-color: rgb(173, 181, 189);
+    border-radius: 15px;
+}
+
+.navbar-item{
+    display: inline;
+    margin: 0 1vw;
+    color: black;
+}

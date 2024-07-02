@@ -1,9 +1,9 @@
 .App {
   text-align: center;
+  /* background-color: #282c34; */
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -14,5 +14,5 @@
 }
 
 .signin_container{
-  margin: 5vh 40vw;
+  margin: 5vh 42.5vw;
 }
