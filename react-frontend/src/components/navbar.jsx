@@ -1,12 +1,12 @@
-import '../assets/navbar.css'
+import styles from '../assets/css-modules/header.module.css'
 
 function NavBar(){
     return (
-        <div className="navbar-container">
-            <ul className='navbar'>
-                <li className="navbar-item">home</li>
-                <li className="navbar-item">signin/signup</li>
-                <li className="navbar-item">profile</li>
+        <div className={styles.navbarContainer}>
+            <ul className={styles.navbar}>
+                <li className={styles.navbarItem}>home</li>
+                <li className={styles.navbarItem}>signin/signup</li>
+                <li className={styles.navbarItem}>profile</li>
             </ul>
         </div>
     );

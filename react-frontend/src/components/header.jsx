@@ -1,11 +1,15 @@
+import { Outlet } from 'react-router-dom';
 import NavBar from './navbar.jsx';
-import '../assets/App.css';
+import styles from '../assets/css-modules/header.module.css';
 
 function Header(){
     return (
-        <div className="App-header">
-            <h1>Authentication App Test</h1>
-            <NavBar />
+        <div>
+            <div className={styles.header}>
+                <h1>Authentication App Test</h1>
+                <NavBar />
+            </div>
+            <Outlet />
         </div>
     );
 }

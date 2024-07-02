@@ -1,8 +1,8 @@
-import '../assets/App.css'
-import Header from '../components/header.jsx';
+import styles from '../assets/css-modules/signin.module.css';
+import signinStyles from '../assets/css-modules/signin.module.css';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
-function App() {
+function SignIn() {
 
   function handleLogin(credentialResponse){
     fetch("http://localhost:8000/auth/verify",
@@ -34,11 +34,10 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <Header />
+    <div className={styles.container}>
       <div>
         <GoogleOAuthProvider clientId="632427256455-90f00d3r3di4emog5o9tpjehlcpeq0r0.apps.googleusercontent.com">
-          <div className='signin_container'>
+          <div className={signinStyles.signinContainer}>
             <GoogleLogin 
               onSuccess = {handleLogin}
               onError = {err => {
@@ -55,6 +54,4 @@ function App() {
   );
 }
 
-export default App;
-
-
+export default SignIn;
