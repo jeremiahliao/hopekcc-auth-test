@@ -6,7 +6,7 @@ function Header(){
     return (
         <div>
             <div className={styles.header}>
-                <h1>Authentication App Test</h1>
+                <h1>HopeKCC</h1>
                 <NavBar />
             </div>
             <Outlet />

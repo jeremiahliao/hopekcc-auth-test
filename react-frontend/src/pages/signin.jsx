@@ -1,16 +1,19 @@
 import styles from '../assets/css-modules/signin.module.css';
 import signinStyles from '../assets/css-modules/signin.module.css';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
 
 function SignIn() {
+  const navigate = useNavigate();
 
   function handleLogin(credentialResponse){
     fetch("http://localhost:8000/auth/verify",
       {
-        method: "GET",
+        method: "POST",
         headers: {
           Authorization: `Bearer ${credentialResponse.credential}`
-        }
+        },
+        credentials: "include"
       }
     )
     .then(
@@ -25,7 +28,7 @@ function SignIn() {
     .then(
       data => {
         localStorage.setItem("user", JSON.stringify(data));
-        // window.location.href = "profile.html";
+        navigate("/profile");
       }
     )
     .catch(
@@ -35,7 +38,6 @@ function SignIn() {
   
   return (
     <div className={styles.container}>
-      <div>
         <GoogleOAuthProvider clientId="632427256455-90f00d3r3di4emog5o9tpjehlcpeq0r0.apps.googleusercontent.com">
           <div className={signinStyles.signinContainer}>
             <GoogleLogin 
@@ -46,10 +48,11 @@ function SignIn() {
               }
               useOneTap
               shape="pill"
+              use_fedcm_for_prompt="true"
+              width="300"
             />
           </div>
         </GoogleOAuthProvider>
-      </div>
     </div>
   );
 }

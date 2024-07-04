@@ -2,7 +2,7 @@
 function handleCredentialResponse(response){
     user_credential = response.credential;
     console.log(user_credential);
-    fetch("http://localhost:3000/auth/verify", 
+    fetch("http://localhost:8000/auth/verify", 
         {
             method: "GET",
             headers: {
@@ -22,7 +22,7 @@ function handleCredentialResponse(response){
     .then(
         data => {
             localStorage.setItem("user", JSON.stringify(data));
-            window.location.href = "profile.html";
+            // window.location.href = "profile.html";
         }
     ).catch(
         error => console.log(`Credential Handler Error: ${error}`)
